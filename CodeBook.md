@@ -1,6 +1,7 @@
 # Getting and Cleaning Data Course Project
 
 This course project uses data collected from the accelerometers from the Samsung Galaxy S smartphone.
+
 See http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones#
 
 # Variables
