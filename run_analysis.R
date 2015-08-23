@@ -4,8 +4,9 @@
 #
 run_analysis <- function() {
 
-	# load plyr package
-	library(plyr)
+	# load packages
+	library(reshape2)
+	library(dplyr)
 
 	#
 	# 1. Merges the training and the test sets to create one data set.
@@ -31,8 +32,9 @@ run_analysis <- function() {
 	# for each measurement.
 	#
 
-	# Read features
+	# Read features and set the name of the variables in x_data
 	feature_data <- read.table("./data/UCI HAR Dataset/features.txt")
+	colnames(x_data) <- feature_data[,2]
 
 	# Get all features with -mean() or -std()
 	measurements_mean_std_cols <- grep("(-mean|-std)\\(\\)", feature_data[,2])
@@ -47,18 +49,23 @@ run_analysis <- function() {
 	#
 	# 4. Appropriately labels the data set with descriptive variable names. 
 	#
-	colnames(x_data) <- feature_data[measurements_mean_std_cols,2]
 	colnames(y_data) <- "activity"
 	colnames(subject_data) <- "subject"
 
 	# Merge everything in a single table
-	x_data <- cbind(x_data,y_data,subject_data)
+	x_data <- cbind(subject_data, y_data, x_data)
 
 	# 5. From the data set in step 4, creates a second, independent tidy data 
 	# set with the average of each variable for each activity and each 
 	# subject.
-	tidy_data <- ddply(x_data, c("subject", "activity"), .fun = function(xx) { colMeans(xx[,1:66])})
-	
+
+	tidy_data <- tbl_df(x_data)
+	tidy_data <- tidy_data %>%
+		melt(id.vars=c("subject","activity")) %>%
+		group_by(subject, activity, variable) %>%
+		summarise(mean=mean(value))
+
+	# Write tidy data	
 	if (!file.exists("./output")) {
 		dir.create("./output")
 	}
