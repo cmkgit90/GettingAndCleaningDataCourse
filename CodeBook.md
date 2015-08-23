@@ -5,74 +5,10 @@ This course project uses data collected from the accelerometers from the Samsung
 See http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones#
 
 # Variables
-* subject
-* activity
-* tBodyAcc-mean()-X
-* tBodyAcc-mean()-Y
-* tBodyAcc-mean()-Z
-* tBodyAcc-std()-X
-* tBodyAcc-std()-Y
-* tBodyAcc-std()-Z
-* tGravityAcc-mean()-X
-* tGravityAcc-mean()-Y 
-* tGravityAcc-mean()-Z
-* tGravityAcc-std()-X
-* tGravityAcc-std()-Y
-* tGravityAcc-std()-Z
-* tBodyAccJerk-mean()-X
-* tBodyAccJerk-mean()-Y
-* tBodyAccJerk-mean()-Z
-* tBodyAccJerk-std()-X
-* tBodyAccJerk-std()-Y
-* tBodyAccJerk-std()-Z
-* tBodyGyro-mean()-X
-* tBodyGyro-mean()-Y
-* tBodyGyro-mean()-Z
-* tBodyGyro-std()-X
-* tBodyGyro-std()-Y
-* tBodyGyro-std()-Z
-* tBodyGyroJerk-mean()-X
-* tBodyGyroJerk-mean()-Y
-* tBodyGyroJerk-mean()-Z
-* tBodyGyroJerk-std()-X
-* tBodyGyroJerk-std()-Y
-* tBodyGyroJerk-std()-Z
-* tBodyAccMag-mean()
-* tBodyAccMag-std()
-* tGravityAccMag-mean()
-* tGravityAccMag-std()
-* tBodyAccJerkMag-mean()
-* tBodyAccJerkMag-std()
-* tBodyGyroMag-mean()
-* tBodyGyroMag-std()
-* tBodyGyroJerkMag-mean()
-* tBodyGyroJerkMag-std()
-* fBodyAcc-mean()-X
-* fBodyAcc-mean()-Y
-* fBodyAcc-mean()-Z
-* fBodyAcc-std()-X
-* fBodyAcc-std()-Y
-* fBodyAcc-std()-Z
-* fBodyAccJerk-mean()-X
-* fBodyAccJerk-mean()-Y
-* fBodyAccJerk-mean()-Z
-* fBodyAccJerk-std()-X
-* fBodyAccJerk-std()-Y
-* fBodyAccJerk-std()-Z
-* fBodyGyro-mean()-X
-* fBodyGyro-mean()-Y
-* fBodyGyro-mean()-Z
-* fBodyGyro-std()-X
-* fBodyGyro-std()-Y
-* fBodyGyro-std()-Z
-* fBodyAccMag-mean()
-* fBodyAccMag-std()
-* fBodyBodyAccJerkMag-mean()
-* fBodyBodyAccJerkMag-std()
-* fBodyBodyGyroMag-mean()
-* fBodyBodyGyroMag-std()
-* fBodyBodyGyroJerkMag-mean()
-* fBodyBodyGyroJerkMag-std()
+* subject: correspond to the subjects who participated in the test
+* activity: correspond to the activities performed. Possible values are: WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING and LAYING.
+* variable: correspond to each variable measured in the original data files the represent mean or standard deviation values.
+* mean: average value computed for each subject, activity and variable.
 
 # Data
 
@@ -94,15 +30,16 @@ were merged in X data, Y training and Y test were merged in Y data and
 Subject training and Subject test were merged in Subject data
 * File feature.txt was loaded
 * All columns that correspond to mean and standard deviation for each measurement 
-were identified using grep
-* These columns have been extracted and set to X data frame
+were identified and extracted and set to the X data frame variable.
 * In the Y data, activity indices were replaced by activity names
-* In the X data, variable indices were replaced by variable names
-* In the Y data, variable index was replaced by "activity"
-* In the Subject data, variable index was replaced by "subject" name
-* In the X data frame, columns for activity and subject were added binding
-this data frame with the Y data and Subject data frames.
-* The tidy data frame was created by applying the column mean function according to the subject and the activity
+* In the X data, column names were updated according to the variable names
+* In the Y data, column name was set ro "activity"
+* In the Subject data, column name was set to "subject"
+* X data was updated to contain subject, activity and variables.
+* Tidy data frame was initialize to X data frame and a set of operations have been performed to tidy the data.
+* First, the data frame was melted creating a data frame with subject, activity, variable and value.
+* The data frame was grouped by subject, activity and variable.
+* The grouped data frame was summarized to get the mean value for each subject, activity and variable.
 * The output was saved in "output\tidy_data.txt"
 
 
